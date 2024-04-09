@@ -115,5 +115,5 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/', [PublicController::class, 'index'])->name('public.home.index');
-Route::get('/posts/{slug}', [PublicController::class, 'showPost'])->name('public.post.detail');
+Route::get('/posts/{slug}', [PublicController::class, 'showPost'])->name('public.posts.showdetail');
 Route::get('/search', [PublicController::class, 'search'])->name('public.search');

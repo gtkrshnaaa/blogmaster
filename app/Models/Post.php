@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'content', 'category_id', 'cover_photo', 'admin_id', 'author_id'];
+    protected $fillable = ['title', 'slug', 'content', 'category_id', 'cover_photo', 'admin_id', 'author_id', 'view_count',];
 
     public function admin()
     {
