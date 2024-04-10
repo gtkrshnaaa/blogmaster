@@ -33,7 +33,10 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script>
+        CKEDITOR.replace('content');
+        
         document.getElementById('title').addEventListener('input', function() {
             var title = this.value.trim().toLowerCase().replace(/\s+/g, '-');
             document.getElementById('slug').value = title;
