@@ -14,7 +14,7 @@ class PublicController extends Controller
         // Ambil recent post dengan pagination
         $posts = Post::with(['category', 'author'])
             ->latest()
-            ->paginate(3); // Ubah angka 3 sesuai dengan jumlah postingan yang ingin ditampilkan per halaman
+            ->paginate(5); // Ubah angka 3 sesuai dengan jumlah postingan yang ingin ditampilkan per halaman
 
         // Ambil popular post berdasarkan jumlah view
         $popularPosts = Post::with('category')

@@ -79,21 +79,23 @@ Route::prefix('author')->group(function () {
     // Rute dashboard (memerlukan autentikasi author)
     Route::middleware([EnsureAuthorHasAccount::class])->group(function () {
         Route::get('/dashboard', [AuthorController::class, 'dashboard'])->name('author.dashboard');
+        Route::get('author/posts/category/{categoryId}', [AuthorPostController::class, 'showPostsByCategory'])->name('author.posts.category');
+
         // Rute untuk pengelolaan postingan
-        Route::get('/author/posts', [AuthorPostController::class, 'index'])->name('author.posts.index'); // Menampilkan daftar postingan
-        Route::get('/author/posts/create', [AuthorPostController::class, 'create'])->name('author.posts.create'); // Menampilkan form pembuatan postingan baru
-        Route::post('/author/posts', [AuthorPostController::class, 'store'])->name('author.posts.store'); // Menyimpan postingan baru
-        Route::get('/author/posts/{post}/edit', [AuthorPostController::class, 'edit'])->name('author.posts.edit'); // Menampilkan form pengeditan postingan
-        Route::put('/author/posts/{post}', [AuthorPostController::class, 'update'])->name('author.posts.update'); // Menyimpan perubahan pada postingan yang diedit
-        Route::get('/author/posts/{post}', [AuthorPostController::class, 'show'])->name('author.posts.show'); // Menyimpan perubahan pada postingan yang diedit
-        Route::delete('/author/posts/{post}', [AuthorPostController::class, 'destroy'])->name('author.posts.destroy'); // Menghapus postingan
+        Route::get('/dashboard/posts', [AuthorPostController::class, 'index'])->name('author.posts.index'); // Menampilkan daftar postingan
+        Route::get('/dashboard/posts/create', [AuthorPostController::class, 'create'])->name('author.posts.create'); // Menampilkan form pembuatan postingan baru
+        Route::post('/dashboard/posts', [AuthorPostController::class, 'store'])->name('author.posts.store'); // Menyimpan postingan baru
+        Route::get('/dashboard/posts/{post}/edit', [AuthorPostController::class, 'edit'])->name('author.posts.edit'); // Menampilkan form pengeditan postingan
+        Route::put('/dashboard/posts/{post}', [AuthorPostController::class, 'update'])->name('author.posts.update'); // Menyimpan perubahan pada postingan yang diedit
+        Route::get('/dashboard/posts/{post}', [AuthorPostController::class, 'show'])->name('author.posts.show'); // Menampilkan detail postingan
+        Route::delete('/dashboard/posts/{post}', [AuthorPostController::class, 'destroy'])->name('author.posts.destroy'); // Menghapus postingan
     });
 
     // Rute logout
     Route::post('/logout', [AuthorController::class, 'logout'])->name('author.logout');
 
-   
-    
+
+
 });
 
 
@@ -118,5 +120,5 @@ Route::get('/', [PublicController::class, 'index'])->name('public.home.index');
 Route::get('/posts/{slug}', [PublicController::class, 'showPost'])->name('public.posts.showdetail');
 Route::get('/search', [PublicController::class, 'search'])->name('public.search');
 Route::get('/category/search', [PublicController::class, 'search'])->name('public.posts.category.search');
-Route::get('/posts/category/{id}', [PublicController::class,'showPostsByCategory'])->name('public.posts.category');
+Route::get('/posts/category/{id}', [PublicController::class, 'showPostsByCategory'])->name('public.posts.category');
 

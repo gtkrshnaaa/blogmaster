@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- Search Bar -->
-                <div class="card mb-4">
+                <div class="card shadow mb-4" style="border: none;"> <!-- Added shadow class and removed border -->
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
                         <form action="/search" method="GET">
@@ -23,21 +23,20 @@
                 <!-- End Search Bar -->
 
                 <!-- Recent Posts -->
-                <div class="card mb-4">
+                <div class="card shadow mb-4" style="border: none;"> <!-- Added shadow class and removed border -->
                     <h5 class="card-header">All Posts</h5>
                     <div class="card-body">
                         @foreach ($posts as $post)
                             <!-- Periksa apakah post memiliki cover photo -->
                             @if ($post->cover_photo)
-                                <div class="row mb-3">
+                                <div class="row mb-3 d-flex align-items-stretch">
                                     <div class="col-md-4">
-                                        <!-- Gambar di sebelah kiri -->
-                                        <img src="{{ asset('storage/' . $post->cover_photo) }}" alt="{{ $post->title }}"
-                                            class="img-fluid">
+                                        <!-- Wrapper untuk gambar dengan background -->
+                                        <div class="image-wrapper" style="background-image: url('{{ asset('storage/' . $post->cover_photo) }}'); background-size: cover; background-position: center; height: 100%;"></div>
                                     </div>
                                     <div class="col-md-8">
                                         <!-- Konten tulisan di sebelah kanan -->
-                                        <div class="card">
+                                        <div class="card " style="border: none;"> <!-- Added shadow class and removed border -->
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $post->title }}</h5>
                                                 <div class="d-flex">
@@ -72,17 +71,16 @@
             </div>
             <div class="col-md-4">
                 <!-- Popular Posts -->
-                <div class="card mb-4">
+                <div class="card shadow mb-4" style="border: none;"> <!-- Added shadow class and removed border -->
                     <h5 class="card-header">Popular Posts</h5>
                     <div class="card-body">
                         @foreach ($popularPosts as $popularPost)
                             <!-- Periksa apakah post populer memiliki cover photo -->
                             @if ($popularPost->cover_photo)
-                                <div class="row mb-3">
+                                <div class="row mb-3 d-flex align-items-stretch">
                                     <div class="col-md-4">
-                                        <!-- Gambar di sebelah kiri -->
-                                        <img src="{{ asset('storage/' . $popularPost->cover_photo) }}"
-                                            alt="{{ $popularPost->title }}" class="img-fluid">
+                                        <!-- Wrapper untuk gambar dengan background -->
+                                        <div class="image-wrapper" style="background-image: url('{{ asset('storage/' . $popularPost->cover_photo) }}'); background-size: cover; background-position: center; height: 100%;"></div>
                                     </div>
                                     <div class="col-md-8">
                                         <!-- Judul dan jumlah view -->
@@ -100,7 +98,7 @@
                 <!-- End Popular Posts -->
 
                 <!-- Categories -->
-                <div class="card mb-4">
+                <div class="card shadow mb-4" style="border: none;"> <!-- Added shadow class and removed border -->
                     <h5 class="card-header">Categories</h5>
                     <div class="card-body">
                         <ul class="list-group">

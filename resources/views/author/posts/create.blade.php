@@ -5,7 +5,7 @@
     <div class="row justify-content-center"> <!-- Gunakan row dan justify-content-center untuk memusatkan konten -->
         <div class="col-md-8"> <!-- Gunakan col-md-8 untuk lebar kolom -->
             <h2>Create New Post</h2>
-            <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('author.posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Title:</label>

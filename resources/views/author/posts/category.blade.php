@@ -15,7 +15,7 @@
 
                         <!-- Recent Posts -->
                         <div class="card shadow mb-4" style="border: none;">
-                            <h5 class="card-header">All Posts</h5>
+                            <h5 class="card-header">All Posts in {{ $category->name }}</h5>
                             <div class="card-body">
                                 @foreach ($posts as $post)
                                     @if ($post->cover_photo)
@@ -38,7 +38,8 @@
                                                             @else
                                                                 <p>Creator Unknown</p>
                                                             @endif
-                                                            &nbsp;&middot;&nbsp; <p>{{ $post->created_at->format('d F Y') }}
+                                                            &nbsp;&middot;&nbsp; <p>
+                                                                {{ $post->created_at->format('d F Y') }}
                                                             </p>
                                                             &nbsp;&middot;&nbsp; <p class="card-text">
                                                                 {{ $post->category->name }}</p>
@@ -69,7 +70,9 @@
                                 <div class="row mb-3 d-flex align-items-stretch">
                                     <div class="col-md-4">
                                         <!-- Wrapper untuk gambar dengan background -->
-                                        <div class="image-wrapper" style="background-image: url('{{ asset('storage/' . $popularPost->cover_photo) }}'); background-size: cover; background-position: center; height: 100%;"></div>
+                                        <div class="image-wrapper"
+                                            style="background-image: url('{{ asset('storage/' . $popularPost->cover_photo) }}'); background-size: cover; background-position: center; height: 100%;">
+                                        </div>
                                     </div>
                                     <div class="col-md-8">
                                         <!-- Judul dan jumlah view -->
@@ -90,11 +93,10 @@
                     <h5 class="card-header">Categories</h5>
                     <div class="card-body">
                         @foreach ($categories as $category)
-                                <li class="list-group-item">
-                                    <a
-                                        href="{{ route('author.posts.category', $category->id) }}">{{ $category->name }}</a>
-                                </li>
-                            @endforeach
+                            <li class="list-group-item">
+                                <a href="{{ route('author.posts.category', $category->id) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -125,13 +125,36 @@ class AuthorPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->firstOrFail();
         return view('author.posts.show', compact('post'));
+    }
+
+    public function showPostsByCategory(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+
+        // Query untuk mencari post berdasarkan judul dan kategori
+        $query = $request->input('q');
+        $postsQuery = Post::where('category_id', $category->id);
+        
+        if ($query) {
+            $postsQuery->where('title', 'like', '%' . $query . '%');
+        }
+        
+        // Ambil data post dengan pagination
+        $posts = $postsQuery->paginate(5);
+
+        // Ambil popular post berdasarkan jumlah view
+        $popularPosts = Post::orderBy('view_count', 'desc')->take(5)->get();
+        
+        $categories = Category::all();
+
+        return view('author.posts.category', compact('category', 'posts', 'popularPosts', 'categories', 'query'));
     }
 
     /**
@@ -155,4 +178,3 @@ class AuthorPostController extends Controller
         }
     }
 }
-

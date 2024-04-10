@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 
 class AuthorController extends Controller
 {
@@ -45,7 +46,15 @@ class AuthorController extends Controller
         // Ambil semua postingan author yang terkait dengan pengguna yang sedang login
         $posts = Auth::guard('author')->user()->posts;
 
+        $popularPosts = Post::where('author_id', auth()->guard('author')->id())
+            ->orderBy('view_count', 'desc')
+            ->limit(5)
+            ->get();
+
+        $categories = Category::all();
+
         // Kirim data postingan ke view dashboard.blade.php
-        return view('author.dashboard', compact('posts'));
+        return view('author.dashboard', compact('posts', 'popularPosts', 'categories'));
     }
+
 }
