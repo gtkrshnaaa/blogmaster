@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Edit Post</h2>
+    <h2 style="margin-top: 100px">Edit Post</h2>
     <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -20,8 +20,9 @@
         <div class="form-group">
             <label for="category">Category:</label>
             <select name="category_id" id="category" class="form-control" required>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" @if($post->category_id == $category->id) selected @endif>{{ $category->name }}</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" @if ($post->category_id == $category->id) selected @endif>
+                        {{ $category->name }}</option>
                 @endforeach
             </select>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Create New Post</h2>
+    <h2 style="margin-top: 100px">Create New Post</h2>
     <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -32,7 +32,10 @@
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script>
+        CKEDITOR.replace('content');
+        
         document.getElementById('title').addEventListener('input', function() {
             var title = this.value.trim().toLowerCase().replace(/\s+/g, '-');
             document.getElementById('slug').value = title;

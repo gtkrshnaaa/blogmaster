@@ -3,8 +3,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>{{ $post->title }}</h2>
-    <p>{{ $post->content }}</p>
+    <h2 style="margin-top: 100px">{{ $post->title }}</h2>
+    <p>{!! $post->content !!}</p>
     <p>Category: {{ $post->category->name }}</p>
     
     @if($post->author) <!-- Pemeriksaan apakah ada author -->

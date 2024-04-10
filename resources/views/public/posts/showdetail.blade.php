@@ -22,7 +22,7 @@
                     </div>
                     <div class="card-body">
                         <img src="{{ asset('storage/' . $post->cover_photo) }}" alt="{{ $post->title }}" class="img-fluid">
-                        <p>{{ $post->content }}</p>
+                        <p>{!! $post->content !!}</p>
                     </div>
 
                 </div>

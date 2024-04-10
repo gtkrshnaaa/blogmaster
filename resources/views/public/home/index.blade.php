@@ -53,7 +53,7 @@
                                                     &nbsp;&middot;&nbsp; <p class="card-text">{{ $post->category->name }}
                                                     </p>
                                                 </div>
-                                                <p class="card-text">{{ Str::words($post->content, 20, '...') }}</p>
+                                                <p class="card-text">{!! \Illuminate\Support\Str::limit(strip_tags($post->content), 100, '...') !!}</p>
                                                 <a href="{{ route('public.posts.showdetail', $post->slug) }}"
                                                     class="btn btn-primary">View Details</a>
                                             </div>

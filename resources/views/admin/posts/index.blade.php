@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>All Posts</h2>
+    <h2 style="margin-top: 100px">All Posts</h2>
     <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">Create New Post</a>
     <table class="table mt-3">
         <thead>
@@ -14,15 +14,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($posts as $post)
+            @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td>
-                        @if($post->author) <!-- Pemeriksaan apakah author ada -->
+                        @if ($post->author)
+                            <!-- Pemeriksaan apakah author ada -->
                             {{ $post->author->name }}
-                        @elseif($post->admin) <!-- Pemeriksaan apakah admin ada -->
+                        @elseif($post->admin)
+                            <!-- Pemeriksaan apakah admin ada -->
                             {{ $post->admin->name }}
                         @else
                             Unknown <!-- Tampilkan pesan jika tidak ada author atau admin -->
@@ -34,7 +36,8 @@
                         <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
                         </form>
                     </td>
                 </tr>
