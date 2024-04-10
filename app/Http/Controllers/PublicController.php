@@ -46,6 +46,30 @@ class PublicController extends Controller
         return view('public.posts.showdetail', compact('post', 'popularPosts', 'categories'));
     }
 
+    public function showPostsByCategory(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+
+        // Query untuk mencari post berdasarkan judul dan kategori
+        $query = $request->input('q');
+        $postsQuery = Post::where('category_id', $category->id);
+        
+        if ($query) {
+            $postsQuery->where('title', 'like', '%' . $query . '%');
+        }
+        
+        // Ambil data post dengan pagination
+        $posts = $postsQuery->paginate(5);
+
+        // Ambil popular post berdasarkan jumlah view
+        $popularPosts = Post::orderBy('view_count', 'desc')->take(5)->get();
+        
+        $categories = Category::all();
+
+        return view('public.posts.category', compact('category', 'posts', 'popularPosts', 'categories', 'query'));
+    }
+
+
 
     public function search(Request $request)
     {

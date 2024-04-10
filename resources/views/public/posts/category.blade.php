@@ -1,4 +1,4 @@
-<!-- resources/views/public/home/index.blade.php -->
+<!-- resources/views/public/posts/category.blade.php -->
 
 @extends('layouts.app')
 
@@ -8,9 +8,9 @@
             <div class="col-md-8">
                 <!-- Search Bar -->
                 <div class="card mb-4">
-                    <h5 class="card-header">Search</h5>
+                    <h5 class="card-header">Search in {{ $category->name }}</h5>
                     <div class="card-body">
-                        <form action="/search" method="GET">
+                        <form action="{{ route('public.posts.category.search', ['id' => $category->id]) }}" method="GET">
                             <div class="input-group">
                                 <input type="text" name="q" class="form-control" placeholder="Search for...">
                                 <div class="input-group-append">
@@ -21,10 +21,9 @@
                     </div>
                 </div>
                 <!-- End Search Bar -->
-
                 <!-- Recent Posts -->
                 <div class="card mb-4">
-                    <h5 class="card-header">All Posts</h5>
+                    <h5 class="card-header">Posts in {{ $category->name }}</h5>
                     <div class="card-body">
                         @foreach ($posts as $post)
                             <!-- Periksa apakah post memiliki cover photo -->
@@ -106,8 +105,7 @@
                         <ul class="list-group">
                             @foreach ($categories as $category)
                                 <li class="list-group-item">
-                                    <a
-                                        href="{{ route('public.posts.category', $category->id) }}">{{ $category->name }}</a>
+                                    <a href="{{ route('public.posts.category', $category->id) }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
