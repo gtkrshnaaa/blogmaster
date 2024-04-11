@@ -131,7 +131,16 @@ class AuthorPostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('author.posts.show', compact('post'));
+
+        $popularPosts = Post::where('author_id', auth()->guard('author')->id())
+            ->orderBy('view_count', 'desc')
+            ->limit(5)
+            ->get();
+
+        $categories = Category::all();
+
+        // Kirim data postingan ke view dashboard.blade.php
+        return view('author.posts.show', compact('post', 'popularPosts', 'categories'));
     }
 
     public function showPostsByCategory(Request $request, $id)

@@ -7,20 +7,15 @@
     <title>@yield('title', 'Author Dashboard')</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <!-- Navbar, judul, atau logo -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Author Dashboard</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container d-flex justify-content-between">
+            <div>
+                <a class="navbar-brand" href="#">Author Dashboard</a>
+            </div>
+            <div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
@@ -41,13 +36,15 @@
                     </li>
                 </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <!-- Content -->
-    <main>
-        @yield('content')
-    </main>
+    <!-- Content area with col-md-8 -->
+    <div class="container" style="padding-top: 70px;">
+        <main>
+            @yield('content')
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-light text-center py-3">
