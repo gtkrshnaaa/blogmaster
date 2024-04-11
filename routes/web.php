@@ -41,31 +41,32 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware([AdminAuth::class])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        
+        Route::get('/authors', [ManageAuthorController::class, 'index'])->name('admin.authors.index');
+        Route::get('/authors/create', [ManageAuthorController::class, 'create'])->name('admin.authors.create');
+        Route::post('/authors/store', [ManageAuthorController::class, 'store'])->name('admin.authors.store');
+        Route::get('/authors/edit/{id}', [ManageAuthorController::class, 'edit'])->name('admin.authors.edit');
+        Route::put('/authors/update/{id}', [ManageAuthorController::class, 'update'])->name('admin.authors.update');
+        Route::delete('/authors/destroy/{id}', [ManageAuthorController::class, 'destroy'])->name('admin.authors.destroy');
+    
+        Route::resource('categories', ManageCategoryController::class)->except(['create', 'show', 'store', 'update', 'destroy']);
+        Route::get('/categories', [ManageCategoryController::class, 'index'])->name('admin.categories.index');
+        Route::get('/categories/create', [ManageCategoryController::class, 'create'])->name('admin.categories.create');
+        Route::post('/categories', [ManageCategoryController::class, 'store'])->name('admin.categories.store');
+        Route::get('/categories/{category}/edit', [ManageCategoryController::class, 'edit'])->name('admin.categories.edit');
+        Route::put('/categories/{category}', [ManageCategoryController::class, 'update'])->name('admin.categories.update');
+        Route::delete('/categories/{category}', [ManageCategoryController::class, 'destroy'])->name('admin.categories.destroy');
+    
+        // Rute untuk mengelola postingan
+        Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index'); // Ini adalah rute untuk menampilkan daftar postingan
+        Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create'); // Ini adalah rute untuk menampilkan formulir pembuatan postingan baru
+        Route::post('/admin/posts', [AdminPostController::class, 'store'])->name('admin.posts.store'); // Ini adalah rute untuk menyimpan postingan baru ke database
+        Route::get('/admin/posts/{slug}', [AdminPostController::class, 'show'])->name('admin.posts.show'); // Ini adalah rute untuk menampilkan detail postingan tertentu
+        Route::get('/admin/posts/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit'); // Ini adalah rute untuk menampilkan formulir pengeditan postingan
+        Route::put('/admin/posts/{id}', [AdminPostController::class, 'update'])->name('admin.posts.update'); // Ini adalah rute untuk menyimpan perubahan pada postingan yang diedit
+        Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy'); // Ini adalah rute untuk menghapus postingan
     });
 
-    Route::get('/authors', [ManageAuthorController::class, 'index'])->name('admin.authors.index');
-    Route::get('/authors/create', [ManageAuthorController::class, 'create'])->name('admin.authors.create');
-    Route::post('/authors/store', [ManageAuthorController::class, 'store'])->name('admin.authors.store');
-    Route::get('/authors/edit/{id}', [ManageAuthorController::class, 'edit'])->name('admin.authors.edit');
-    Route::put('/authors/update/{id}', [ManageAuthorController::class, 'update'])->name('admin.authors.update');
-    Route::delete('/authors/destroy/{id}', [ManageAuthorController::class, 'destroy'])->name('admin.authors.destroy');
-
-    Route::resource('categories', ManageCategoryController::class)->except(['create', 'show', 'store', 'update', 'destroy']);
-    Route::get('/categories', [ManageCategoryController::class, 'index'])->name('admin.categories.index');
-    Route::get('/categories/create', [ManageCategoryController::class, 'create'])->name('admin.categories.create');
-    Route::post('/categories', [ManageCategoryController::class, 'store'])->name('admin.categories.store');
-    Route::get('/categories/{category}/edit', [ManageCategoryController::class, 'edit'])->name('admin.categories.edit');
-    Route::put('/categories/{category}', [ManageCategoryController::class, 'update'])->name('admin.categories.update');
-    Route::delete('/categories/{category}', [ManageCategoryController::class, 'destroy'])->name('admin.categories.destroy');
-
-    // Rute untuk mengelola postingan
-    Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index'); // Ini adalah rute untuk menampilkan daftar postingan
-    Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create'); // Ini adalah rute untuk menampilkan formulir pembuatan postingan baru
-    Route::post('/admin/posts', [AdminPostController::class, 'store'])->name('admin.posts.store'); // Ini adalah rute untuk menyimpan postingan baru ke database
-    Route::get('/admin/posts/{slug}', [AdminPostController::class, 'show'])->name('admin.posts.show'); // Ini adalah rute untuk menampilkan detail postingan tertentu
-    Route::get('/admin/posts/{id}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit'); // Ini adalah rute untuk menampilkan formulir pengeditan postingan
-    Route::put('/admin/posts/{id}', [AdminPostController::class, 'update'])->name('admin.posts.update'); // Ini adalah rute untuk menyimpan perubahan pada postingan yang diedit
-    Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy'); // Ini adalah rute untuk menghapus postingan
 });
 
 
