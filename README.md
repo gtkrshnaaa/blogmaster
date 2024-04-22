@@ -1,42 +1,36 @@
+# Installation
 
-# struktur folder views
+Clone repository
+```bash
+$ git clone https://github.com/gtkrshnaaa/blogmaster.git
+```
+Masuk ke direktori blogmaster
+```bash
+$ cd blogmaster
+```
+Kemudian ikuti command command dibawah ini
+```bash
+$ composer install
+```
 
-resources/
-└── views/
-    ├── admin/
-    │   ├── posts/
-    │   │   ├── index.blade.php
-    │   │   ├── show.blade.php
-    │   │   └── ...
-    │   └── dashboard.blade.php
-    ├── auth/
-    │   ├── admin/
-    │   │   └── register.blade.php
-    │   └── author/
-    │       └── login.blade.php
-    ├── author/
-    │   ├── dashboard.blade.php
-    │   └── posts/
-    │       └── index.blade.php
-    ├── layouts/
-    │   ├── app.blade.php
-    │   └── admin.blade.php
-    └── public/
-        ├── home/
-        │   └── index.blade.php
-        ├── posts/
-        │   ├── category.blade.php
-        │   └── showdetail.blade.php
-        └── search.blade.php
-    └── welcome.blade.php
+```bash
+$ cp .env.example .env
+```
 
-# routes
+Sesuaikan isi file .env
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-home : http://127.0.0.1:8000/
-admin login : http://127.0.0.1:8000/admin/login 
-author login : http://127.0.0.1:8000/author/login
+```bash
+$ php artisan key:generate
+```
 
-# account
-
-admin : admin@example.com
-        password
+```bash
+$ php artisan migrate:fresh
+```
