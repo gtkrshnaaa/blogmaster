@@ -34,3 +34,7 @@ $ php artisan key:generate
 ```bash
 $ php artisan migrate:fresh
 ```
+
+Jalankan aplikasi dengan command ini
+```bash
+$ php artisan serve
