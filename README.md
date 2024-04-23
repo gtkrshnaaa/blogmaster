@@ -61,6 +61,9 @@ DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
+
+
+FILESYSTEM_DISK=public
 ```
 
 ```bash
@@ -70,6 +73,11 @@ $ php artisan key:generate
 ```bash
 $ php artisan migrate:fresh
 ```
+
+```bash
+$ php artisan storage:link
+```
+
 
 Jalankan aplikasi dengan command ini
 ```bash
